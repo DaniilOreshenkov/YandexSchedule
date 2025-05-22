@@ -1,20 +1,22 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @AppStorage(Constant.isDarkMode.stringValue) var isDarkMode: Bool = false
+    
     var body: some View {
         TabView {
-            MainView()
+            ContentView()
                 .tabItem {
                     Image(R.IconYP.main)
                         .renderingMode(.template)
                 }
-            SettingsScreen()
+            SettingView()
                 .tabItem {
                     Image(R.IconYP.settings)
                         .renderingMode(.template)
                 }
         }
-        .accentColor(Color(R.ColorYP.blackDynamic))
+        .accentColor(isDarkMode ? Color.whiteYP : Color.blackYP)
         .overlay(
             Divider()
                 .offset(y: -49), alignment: .bottom

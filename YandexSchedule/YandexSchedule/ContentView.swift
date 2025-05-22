@@ -39,7 +39,7 @@ struct ContentView: View {
     ]
     
     var body: some View {
-        TabBarView()
+        Text("1")
     }
 }
 

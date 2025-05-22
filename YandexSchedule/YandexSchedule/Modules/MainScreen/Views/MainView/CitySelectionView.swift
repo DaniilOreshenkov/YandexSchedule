@@ -4,7 +4,7 @@ struct CitySelectionView: View {
     let city: String
     let placeholder: String
     
-    @StateObject var viewModel: SearchViewModel
+    @StateObject var viewModel: TravelViewModel
     
     var body: some View {
         HStack {

@@ -1,0 +1,35 @@
+import Foundation
+
+extension R {
+    enum Mock {
+        static var cities: [City] = [
+            City(name: "Москва", stations: [Station(name: "Белорусский вокзал"),
+                                            Station(name: "Казанский вокзал"),
+                                            Station(name: "Киевский вокзал"),
+                                            Station(name: "Курский вокзал"),
+                                            Station(name: "Павелецкий вокзал"),
+                                            Station(name: "Рижский вокзал"),
+                                            Station(name: "Савеловский вокзал"),
+                                            Station(name: "Ярославский вокзал")]),
+            
+            City(name: "Санкт-Петербург", stations: [Station(name: "Московский вокзал"),
+                                                     Station(name: "Ладожский вокзал"),
+                                                     Station(name: "Витебский вокзал"),
+                                                     Station(name: "Финляндский вокзал"),
+                                                     Station(name: "Балтийский вокзал")]),
+            
+            City(name: "Сочи", stations: [Station(name: "Сочинский вокзал"),
+                                          Station(name: "Адлерский вокзал")]),
+            
+            City(name: "Саратов", stations: [Station(name: "Саратов-Пассажирский")]),
+            
+            City(name: "Красноярск", stations: [Station(name: "Красноярск-Пассажирский")]),
+            
+            City(name: "Омск", stations: [Station(name: "Омск-1"), Station(name: "Омск-2")]),
+            
+            City(name: "Краснодар", stations: [Station(name: "Краснодар-Пассажирский")]),
+            
+            City(name: "Новосибирск", stations: [Station(name: "Новосибирск-Пассажирский")])
+        ]
+    }
+}
