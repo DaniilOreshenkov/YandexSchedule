@@ -1,4 +1,5 @@
 import Foundation
+import SwiftUICore
 
 extension R {
     enum Mock {
@@ -30,6 +31,19 @@ extension R {
             City(name: "Краснодар", stations: [Station(name: "Краснодар-Пассажирский")]),
             
             City(name: "Новосибирск", stations: [Station(name: "Новосибирск-Пассажирский")])
+        ]
+        
+        static var carriers: [Transport] = [
+            Transport(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 20, date: Date()),
+            Transport(carrierName: "ФГК", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 15, date: Date()),
+            Transport(carrierName: "Урал логистика", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 18, date: Date()),
+            Transport(carrierName: "РЖД", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 19, date: Date()),
+            Transport(carrierName: "ФГК", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 14, date: Date()),
+            Transport(carrierName: "Урал логистика", carrierLogo: Image("rzhd"), startTime: Date(), endTime: Date(), timeInRoute: 17, date: Date())
+        ]
+        
+        static var carriersInfo: [CarrierInfo] = [
+            CarrierInfo(logo: Image("RZHD"), name: "ОАО \u{00AB}РЖД\u{00BB}", phoneNumber: "+7 (495) 123-45-67", email: "info@rzhd.ru")
         ]
     }
 }
