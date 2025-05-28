@@ -9,16 +9,38 @@
 /* Begin PBXBuildFile section */
 		198317DE2DC73D9800332629 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = 198317DD2DC73D9800332629 /* OpenAPIRuntime */; };
 		198317E52DC73F1600332629 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = 198317E42DC73F1600332629 /* OpenAPIURLSession */; };
+		19D613D82DE09E6A00ADF65A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19D613BC2DE09E6A00ADF65A /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		198317C52DC73BEA00332629 /* YandexSchedule.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YandexSchedule.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		19D613BC2DE09E6A00ADF65A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		198317C72DC73BEA00332629 /* YandexSchedule */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = YandexSchedule;
+			sourceTree = "<group>";
+		};
+		19D613E82DE0ADBA00ADF65A /* Helpers  */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Helpers ";
+			sourceTree = "<group>";
+		};
+		19D613F52DE0ADBC00ADF65A /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		19D6140D2DE0ADBF00ADF65A /* Modules */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		19D614242DE0ADC400ADF65A /* Servers  */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Servers ";
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -39,6 +61,11 @@
 		198317BC2DC73BEA00332629 = {
 			isa = PBXGroup;
 			children = (
+				19D613BC2DE09E6A00ADF65A /* ContentView.swift */,
+				19D614242DE0ADC400ADF65A /* Servers  */,
+				19D6140D2DE0ADBF00ADF65A /* Modules */,
+				19D613F52DE0ADBC00ADF65A /* Models */,
+				19D613E82DE0ADBA00ADF65A /* Helpers  */,
 				198317C72DC73BEA00332629 /* YandexSchedule */,
 				198317C62DC73BEA00332629 /* Products */,
 			);
@@ -70,6 +97,10 @@
 			);
 			fileSystemSynchronizedGroups = (
 				198317C72DC73BEA00332629 /* YandexSchedule */,
+				19D613E82DE0ADBA00ADF65A /* Helpers  */,
+				19D613F52DE0ADBC00ADF65A /* Models */,
+				19D6140D2DE0ADBF00ADF65A /* Modules */,
+				19D614242DE0ADC400ADF65A /* Servers  */,
 			);
 			name = YandexSchedule;
 			packageProductDependencies = (
@@ -134,6 +165,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19D613D82DE09E6A00ADF65A /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
