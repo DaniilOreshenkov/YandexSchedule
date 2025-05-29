@@ -90,6 +90,11 @@ struct FromToInView: View {
     }
 }
 
+struct ErrorWrapper: Identifiable {
+    let id = UUID()
+    let error: ErrorModel
+}
+
 private extension FromToInView {
     var swapCitiesButton: some View {
         Button(action: {

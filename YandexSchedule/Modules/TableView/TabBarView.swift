@@ -48,6 +48,7 @@ struct TabBarView: View {
         }
         .edgesIgnoringSafeArea(.bottom)
         .preferredColorScheme(isDarkMode ? .dark : .light)
+        
     }
 }
 

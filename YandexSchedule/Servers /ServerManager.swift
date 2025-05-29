@@ -9,6 +9,26 @@ final class ServerManager {
     
     private init() {}
     
+    enum MockScenario {
+        case success
+        case noInternet
+        case serverError
+    }
+    
+    func fetchSchedules(from origin: String, to destination: String, scenario: MockScenario = .success, completion: @escaping (Result<[Transport], ErrorModel>) -> Void) {
+        // Симуляция задержки сети
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            switch scenario {
+            case .success:
+                completion(.success(R.Mock.carriers))
+            case .noInternet:
+                completion(.failure(.noInternet))
+            case .serverError:
+                completion(.failure(.serverError("Сервер временно недоступен")))
+            }
+        }
+    }
+    
     func getServer() -> YRSServer {
         do {
             serverURL = try Servers.Server1.url()
@@ -78,4 +98,4 @@ final class ServerManager {
             )
             nearestStations.stations
         }
-        }}
+    }}

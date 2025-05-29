@@ -17,6 +17,8 @@ class TravelViewModel: ObservableObject {
     @Published var navigationPath = NavigationPath()
     
     @Published var cities = R.Mock.cities
+//    @Published var cities = [City]() // проверка ошибки
+    
     @Published var stations: [Station] = []
     
     @Published var citySearchText = ""
@@ -24,6 +26,9 @@ class TravelViewModel: ObservableObject {
     
     // Выбранный город и список его станций
     @Published var selectedCity: City? = nil
+    @Published var carriers = R.Mock.carriers
+    
+    @Published var error: ErrorModel?
     
     var filteredCities: [City] {
         if citySearchText.isEmpty {
@@ -69,4 +74,23 @@ class TravelViewModel: ObservableObject {
     private func updateSearchButtonVisibility() {
         isSearchButtonVisible = !originCity.isEmpty && !destinationCity.isEmpty
     }
+    
+//    func searchSchedules(scenario: ServerManager.MockScenario = .success) {
+//        guard !originCity.isEmpty, !destinationCity.isEmpty else {
+//            error = .unknown("Выберите города отправления и прибытия")
+//            return
+//        }
+//        
+//        ServerManager.shared.fetchSchedules(from: originCity, to: destinationCity, scenario: scenario) { [weak self] result in
+//            DispatchQueue.main.async {
+//                switch result {
+//                case .success(let schedules):
+//                    self?.carriers = schedules
+//                    self?.error = nil
+//                case .failure(let errorModel):
+//                    self?.error = errorModel
+//                }
+//            }
+//        }
+//    }
 }

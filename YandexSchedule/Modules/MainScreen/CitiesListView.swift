@@ -8,31 +8,35 @@ struct CitiesListView: View {
     
     var body: some View {
         VStack{
-            SearchBar(searchText: $viewModel.citySearchText)
-                .padding([.leading, .trailing, .bottom])
-            if viewModel.filteredCities.isEmpty {
-                Spacer()
-                Text("Город не найден")
-                    .font(.system(size: 24, weight: .bold))
-                Spacer()
+            if viewModel.filteredCities.isEmpty && viewModel.citySearchText.isEmpty {
+                ErrorView(errors: .noInternet)
             } else {
-                List(viewModel.filteredCities, id: \.self) { city in
-                    Button {
-                        viewModel.citySearchText = ""
-                        viewModel.selectCity(city)
-                        viewModel.navigationPath.append(2)
-                    } label: {
-                        HStack {
-                            Text(city.name)
-                                .foregroundColor(isDarkMode ? Color.whiteYP : Color.blackYP)
-                            Spacer()
-                            Image(.arrowRightIcon)
-                                .foregroundColor(isDarkMode ? Color.whiteYP : Color.blackYP)
+                SearchBar(searchText: $viewModel.citySearchText)
+                    .padding([.leading, .trailing, .bottom])
+                if viewModel.filteredCities.isEmpty {
+                    Spacer()
+                    Text("Город не найден")
+                        .font(.system(size: 24, weight: .bold))
+                    Spacer()
+                } else {
+                    List(viewModel.filteredCities, id: \.self) { city in
+                        Button {
+                            viewModel.citySearchText = ""
+                            viewModel.selectCity(city)
+                            viewModel.navigationPath.append(2)
+                        } label: {
+                            HStack {
+                                Text(city.name)
+                                    .foregroundColor(isDarkMode ? Color.whiteYP : Color.blackYP)
+                                Spacer()
+                                Image(.arrowRightIcon)
+                                    .foregroundColor(isDarkMode ? Color.whiteYP : Color.blackYP)
+                            }
                         }
+                        .listRowSeparator(.hidden)
                     }
-                    .listRowSeparator(.hidden)
+                    .listStyle(PlainListStyle())
                 }
-                .listStyle(PlainListStyle())
             }
         }
         .navigationTitle("Выбор города")

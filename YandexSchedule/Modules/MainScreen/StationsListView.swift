@@ -6,27 +6,31 @@ struct StationsListView: View {
     
     var body: some View {
         VStack {
-            SearchBar(searchText: $viewModel.stationSearchText)
-                .padding([.leading, .trailing, .bottom])
-            
-            List(viewModel.filteredStations, id: \.self) { station in
-                Button {
-                    viewModel.stationSearchText = ""
-                    viewModel.selectStation(station, isOrigin: viewModel.isOrigin)
-                    
-                    viewModel.navigationPath.removeLast(viewModel.navigationPath.count)
-                } label: {
-                    HStack {
-                        Text(station.name)
-                            .foregroundColor(isDarkMode ? Color.whiteYP : Color.blackYP)
-                        Spacer()
-                        Image(.arrowRightIcon)
-                            .foregroundColor(isDarkMode ? Color.whiteYP : Color.blackYP)
+            if viewModel.filteredStations.isEmpty && viewModel.stationSearchText.isEmpty {
+                ErrorView(errors: .serverError)
+            } else {
+                SearchBar(searchText: $viewModel.stationSearchText)
+                    .padding([.leading, .trailing, .bottom])
+                
+                List(viewModel.filteredStations, id: \.self) { station in
+                    Button {
+                        viewModel.stationSearchText = ""
+                        viewModel.selectStation(station, isOrigin: viewModel.isOrigin)
+                        
+                        viewModel.navigationPath.removeLast(viewModel.navigationPath.count)
+                    } label: {
+                        HStack {
+                            Text(station.name)
+                                .foregroundColor(isDarkMode ? Color.whiteYP : Color.blackYP)
+                            Spacer()
+                            Image(.arrowRightIcon)
+                                .foregroundColor(isDarkMode ? Color.whiteYP : Color.blackYP)
+                        }
                     }
+                    .listRowSeparator(.hidden)
                 }
-                .listRowSeparator(.hidden)
+                .listStyle(PlainListStyle())
             }
-            .listStyle(PlainListStyle())
         }
         .navigationTitle("Выбор станции")
         .navigationBarTitleDisplayMode(.inline)

@@ -14,40 +14,48 @@ struct ScheduleListView: View {
             Text(from + " -> " + to)
                 .font(.system(size: 24, weight: .bold))
                 .lineLimit(nil)
-            
-            ZStack(alignment: .bottom) {
+             
+            if carriers.isEmpty {
+                Spacer()
+                Text("Город не найден")
+                    .font(.system(size: 24, weight: .bold))
+                Spacer()
+            } else {
                 
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        ForEach(carriers) { carrier in
-                            Button {
-                                viewModel.navigationPath.append(4)
-                            } label: {
-                                CarrierCellView(carrierInfo: carrier)
+                ZStack(alignment: .bottom) {
+                    
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            ForEach(carriers) { carrier in
+                                Button {
+                                    viewModel.navigationPath.append(4)
+                                } label: {
+                                    CarrierCellView(carrierInfo: carrier)
+                                }
+                                
+                                //                            NavigationLink(destination: CarrierInfoView()) {
+                                //                                CarrierCellView(carrierInfo: carrier)
+                                //                            }
+                                .buttonStyle(PlainButtonStyle())
                             }
-
-//                            NavigationLink(destination: CarrierInfoView()) {
-//                                CarrierCellView(carrierInfo: carrier)
-//                            }
-                            .buttonStyle(PlainButtonStyle())
                         }
+                        .padding(.bottom, 100)
                     }
-                    .padding(.bottom, 100)
+                    
+                    
+                    Button{
+                        viewModel.navigationPath.append(5)
+                        isTabBarHidden = true
+                    } label: {
+                        Text("Уточнить время")
+                            .foregroundColor(.whiteYP)
+                            .font(.system(size: 17, weight: .bold))
+                            .frame(width: 343, height: 60)
+                            .background(.blueYP)
+                            .clipShape(RoundedRectangle(cornerRadius: 16))
+                    }
+                    .padding(.bottom, 24)
                 }
-                
-                
-                Button{
-                    viewModel.navigationPath.append(5)
-                    isTabBarHidden = true
-                } label: {
-                    Text("Уточнить время")
-                        .foregroundColor(.whiteYP)
-                        .font(.system(size: 17, weight: .bold))
-                        .frame(width: 343, height: 60)
-                        .background(.blueYP)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                }
-                .padding(.bottom, 24)
             }
         }
         .navigationBarBackButtonHidden(true)
