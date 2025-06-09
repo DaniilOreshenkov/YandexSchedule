@@ -15,19 +15,19 @@ final class ServerManager {
         case serverError
     }
     
-    func fetchSchedules(from origin: String, to destination: String, scenario: MockScenario = .success, completion: @escaping (Result<[Transport], ErrorModel>) -> Void) {
-        // Симуляция задержки сети
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            switch scenario {
-            case .success:
-                completion(.success(R.Mock.carriers))
-            case .noInternet:
-                completion(.failure(.noInternet))
-            case .serverError:
-                completion(.failure(.serverError("Сервер временно недоступен")))
-            }
-        }
-    }
+//    func fetchSchedules(from origin: String, to destination: String, scenario: MockScenario = .success, completion: @escaping (Result<[Transport], ErrorModel>) -> Void) {
+//        // Симуляция задержки сети
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//            switch scenario {
+//            case .success:
+//                completion(.success(R.Mock.carriers))
+//            case .noInternet:
+//                completion(.failure(.noInternet))
+//            case .serverError:
+//                completion(.failure(.serverError("Сервер временно недоступен")))
+//            }
+//        }
+//    }
     
     func getServer() -> YRSServer {
         do {

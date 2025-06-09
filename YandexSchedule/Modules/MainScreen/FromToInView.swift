@@ -2,11 +2,48 @@ import SwiftUI
 
 struct FromToInView: View {
     @StateObject private var viewModel = TravelViewModel()
+    @StateObject private var modelData = StoriesModelData.shared
     @Binding var isTabBarHidden: Bool
+    
+    @State private var selectedStory: Story = Story(small: .preview1, title: "", isViewed: false, story: [])
+    
+    @State private var selectedItem: Int = 0
+    @State private var isStoriesShown: Bool = false
+    
+    private var isStoryViewed: Binding<Bool> {
+        Binding<Bool> (
+            get: {
+                let storyIndex = modelData.stories.firstIndex(where: { selectedStory == $0 })
+                return modelData.stories[storyIndex ?? 0].isViewed
+            },
+            set: {
+                let storyIndex = modelData.stories.firstIndex(where: { selectedStory == $0 })
+                modelData.stories[storyIndex ?? 0].isViewed = $0
+            }
+        )
+    }
     
     var body: some View {
         NavigationStack(path: $viewModel.navigationPath) {
             VStack {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    LazyHGrid(rows: [GridItem(.fixed(140))], alignment: .top, spacing: 20) {
+                        ForEach(modelData.stories) { imageItem in
+                            Button {
+                                self.selectedStory = imageItem
+                                self.selectedItem = modelData.stories.firstIndex(where: { selectedStory == $0 }) ?? 0
+                                isStoriesShown = true
+                                isTabBarHidden = true
+                            } label: {
+                                PreviewCellView(titlePreView: imageItem.title, storyPreview: imageItem.small, isViewed: imageItem.isViewed)
+                            }
+                        }
+                    }
+                    .padding(.vertical, 24)
+                    .frame(height: 188)
+                }
+                .padding(.leading, 16)
+                
                 HStack(spacing: 16) {
                     VStack(spacing: 0) {
                         Button {
@@ -81,6 +118,11 @@ struct FromToInView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 20))
             }
             
+            Spacer()
+            
+        }
+        .fullScreenCover(isPresented: $isStoriesShown, onDismiss: { isTabBarHidden = false }) {
+            ContentStoryView(stories: modelData.stories, indexStory: selectedItem, isPresented: $isStoriesShown, isViewed: isStoryViewed)
         }
         .onChange(of: viewModel.navigationPath) { oldValue, newValue in
             if newValue.count == 0 {
